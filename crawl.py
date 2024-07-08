@@ -14,9 +14,9 @@ class BCorpItem(scrapy.Item):
 class BCorpSpider(CrawlSpider):
     name = 'bcorp'
     allowed_domains = ['bcorporation.net']
-    start_urls = ['https://www.bcorporation.net/community/find-a-b-corp?page=1']
-    rules = (Rule(LinkExtractor(allow=['/community/'], deny=['find-a-b-corp']), 'parse_bcorp'),
-            Rule(LinkExtractor(allow=['/community/find-a-b-corp']), follow=True))
+    start_urls = ['https://www.bcorporation.net/find-a-b-corp/']
+    rules = (Rule(LinkExtractor(allow=['/find-a-b-corp/'], deny=['company']), 'parse_bcorp'),
+            Rule(LinkExtractor(allow=['find-a-b-corp/company']), follow=True))
 
     def parse_bcorp(self, response):
         bcorp = BCorpItem()
